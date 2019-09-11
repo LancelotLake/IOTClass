@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>hello world</h1>
+<img id="head_background" alt="nothing" />
+<script src="jQuery.js"></script>
+<script>
+    var json = window.weichat.getJson();
+    var infos = eval(json);
+    for(var i = 0; i < infos.length; i++) {
+        info = infos[i];
+        var img = info.icon;
+        var userName = info.name;
+        var content = info.content;
+        $("#head_background").after("<div ><div id='nav'><img src=" + img + " /></div><div id='info'><div id='userName'>" + userName + "</div><p id='content'>" + content + "</p></div></div>");
+        $("#userName").click(
+            function() {
+                var str = $(this).text();
+                window.weichat.showToast(str);
+            }
+        )
+        $("#content").click(
+            function() {
+                var str = $(this).text();
+                window.weichat.showToast(str);
+            }
+        )
+    }
+</script>
+
+</body>
+</html>
