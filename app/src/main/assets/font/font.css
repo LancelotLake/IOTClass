@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'fontnameRegular';
+    src: local('fontname Regular'),
+    local('fontname'),
+    url('fontname.ttf') format('truetype');
+}

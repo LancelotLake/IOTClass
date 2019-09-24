@@ -8,3 +8,11 @@
 2. 旧书借用系统
 3. 外联记账系统
 4. 用户登录系统
+
+* **Tips**
+1. 在测试webview内嵌html页面时，一定要注意的是，url的格式是固定的 file:///android_asset/index.html ,html页面也是放在固定的文件夹即名为assets的package下的，assets的位置也是固定的，必须与java，res平行存在。
+2. 在测试Android使用jdbc连接mysql时，一定要注意的是，在AndroidManiFest.xml中加上 `<uses-permission android:name="android.permission.INTERNET" />` ,同时，还要注意，不能直接将sql连接之类的操作写在mainactivity中，而要创建一个新的进程，直接操作似乎是不被允许的，另外，在新的进程中不能对页面进行任何操作，即在非UI线程不要试着去操作界面。
+
+
+**页面设计：**
+![界面设计](imgs/view.png)
