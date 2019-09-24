@@ -16,3 +16,23 @@
 
 **页面设计：**
 ![界面设计](imgs/view.png)
+
+1. 社团主界面
+![主界面](imgs/main.png)
+![主界面](imgs/main02.png)
+
+2. 旧书借用界面
+![旧书](imgs/bookshelf.png)
+![旧书](imgs/bookshelf02.png)
+
+3. 记账
+![account](imgs/account.png)
+![account](imgs/account02.png)
+![account](imgs/account03.png)
+
+4. 个人界面
+![self](imgs/home.png)
+已借书籍↓↓
+![self](imgs/book.png)
+个人信息↓↓
+![self](imgs/selfInfo.png)
