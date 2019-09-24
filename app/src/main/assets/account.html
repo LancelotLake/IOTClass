@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="font/font.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="s_mide layer" data-depth=".35"
+                style="position: relative; display: block; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden;">
+            </div>
+            <div class="logo" style="z-index: 100">外联记账</div>
+            <a class="github" href="https://github.com/LancelotLake/IOTClass" style="z-index: 100">Github</a>
+        </header>
+
+
+        <div class="tips">
+            <div class="pre" style="background: #ff9a9e"></div>
+            <p class="tip">近期账目记录</p>
+
+        </div>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>原因</th>
+                    <th>类型</th>
+                    <th>金额</th>
+                    <th>记录人</th>
+                </tr>
+                <tr>
+                    <td>外场</td>
+                    <td>收入</td>
+                    <td>500</td>
+                    <td>B17070416</td>
+                </tr>
+                <tr>
+                    <td>外场</td>
+                    <td>收入</td>
+                    <td>500</td>
+                    <td>B17070416</td>
+                </tr>
+                <tr>
+                    <td>外场</td>
+                    <td>收入</td>
+                    <td>500</td>
+                    <td>B17070416</td>
+                </tr>
+                <tr>
+                    <td>外场</td>
+                    <td>收入</td>
+                    <td>500</td>
+                    <td>B17070416</td>
+                </tr>
+                <tr>
+                    <td>外场</td>
+                    <td>收入</td>
+                    <td>500</td>
+                    <td>B17070416</td>
+                </tr>
+                <tr class="table-footer">
+
+                    <td colspan="4">点击查看更多</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tips">
+            <div class="pre" style="background: #d4fc79"></div>
+            <p class="tip">新增账目</p>
+
+        </div>
+
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">原因</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="请输入收/支原因">
+                </div>
+            </div>
+            <div class="weui-cell ">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">类型</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" id="type" readonly>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">金额</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入金额">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label for="" class="weui-label">实际日期</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="date" value="">
+                </div>
+            </div>
+
+
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="备注" rows="3"></textarea>
+                    <div class="weui-textarea-counter"><span>0</span>/200</div>
+                </div>
+            </div>
+
+            <a href="javascript:;" class="weui-btn weui-btn_primary" style="width:90%;margin-top: 1rem;">添加账目</a>
+
+
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-weui.js"></script>
+    <script src="js/swiper.js"></script>
+    <script>
+        $("#type").select({
+            title: "选择类型",
+            items: ["收入", "支出"]
+        });
+    </script>
+</body>
+
+</html>
