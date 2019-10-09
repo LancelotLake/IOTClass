@@ -11,7 +11,8 @@ import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mysql.jdbc.Driver;
+import com.my.study.iotclass.Utils.SqlUtil;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -60,23 +61,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        mTextMessage =  findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Connection cnn = null;
-                try {
-                    final String DRIVER = "com.mysql.jdbc.Driver";
-                    Class.forName(DRIVER);
-                    cnn = DriverManager.getConnection(url,username,password);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                cnn = SqlUtil.openConnection(url, username, password);
+//                try {
+//                    final String DRIVER = "com.mysql.jdbc.Driver";
+//                    Class.forName(DRIVER);
+//                    cnn = DriverManager.getConnection(url,username,password);
+//                } catch (ClassNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
                 Message msg = new Message();
                 if (cnn == null) {
                     msg.what = 0;
