@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="font/font.css">
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="wrap" style="max-width: 100%">
+        <div class="center-bg">
+            <div class="welcome">Hi,IOT!</div>
+            <div style="position: absolute;right:5rem;bottom:1.5rem;white-space: pre;">用户：B17070416<br> 李朋阳</div>
+            <img src="imgs/wave.gif" class="wave" alt="">
+        </div>
+        <div class="card-bottom"></div>
+    </div>
+
+    <div class="login positive">
+        <a href="login.html" class="weui-btn weui-btn_primary" style="width:90%;margin-top: 10rem;">登录</a>
+    </div>
+    <div class="list ">
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="selfInfo.html">
+                <div class="weui-cell__hd"><span class="icon-writefill" style="color: #1cbbb4"></span></div>
+                <div class="weui-cell__bd cell-bd">
+                    <p>个人信息</p>
+                </div>
+                <div class="weui-cell__ft cell-footer">
+                </div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="books.html">
+                <div class="weui-cell__hd"><span class="icon-formfill" style="color: #39b54a"></span></div>
+                <div class="weui-cell__bd cell-bd">
+                    <p>已借书籍</p>
+                </div>
+                <div class="weui-cell__ft cell-footer">
+                </div>
+            </a>
+            <a class="weui-cell weui-cell_access" onclick="aboutMe()" href="javascript:;">
+                <div class="weui-cell__hd"><span class="icon-creativefill" style="color: #f37b1d"></span></div>
+                <div class="weui-cell__bd cell-bd">
+                    <p>关于我们</p>
+                    <!-- <a href="javascript:;"  class="weui-btn weui-btn_primary">显示 Alert</a> -->
+                </div>
+                <div class="weui-cell__ft cell-footer">
+                </div>
+            </a>
+        </div>
+
+        <button class="weui-btn btn_warn">退出登录</button>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-weui.js"></script>
+    <script src="js/swiper.js"></script>
+
+    <script>
+        function aboutMe() {
+            // $.alert("一个路过的假面骑士", "about me");
+            $.toast("一个路过的假面骑士");
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+

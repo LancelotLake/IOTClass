@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="font/font.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="wrap" id="home">
+
+
+        <header>
+            <div class="s_mide layer" data-depth=".35"
+                style="position: relative; display: block; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden;">
+            </div>
+            <div class="logo" style="z-index: 100">IOTclass</div>
+            <a class="github" href="https://github.com/LancelotLake/IOTClass" style="z-index: 100">Github</a>
+        </header>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imgs/ac1.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="imgs/ac2.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="imgs/ac3.jpg" alt=""></div>
+            </div>
+        </div>
+        <div class="title">
+            <strong>Hi,IOT</strong>
+        </div>
+        <div class="article-list weui-panel weui-panel_access">
+            <div class="weui-panel_hd">
+                <div class="pre"></div>
+                <p class="tip">近期活动</p>
+            </div>
+            <div class=" weui-panel_bd" v-if="isPrepared">
+                <div class="weui-media-box weui-media-box_text article-item" v-for="item in activities" :key="item.id" @click="navigate(item.id)">
+                    <h4 class="weui-media-box__title">{{item.title}}</h4>
+                    <p class="weui-media-box__desc">{{item.content}}</p>
+                </div>
+                <!-- <div class="weui-media-box weui-media-box_text article-item">
+                    <h4 class="weui-media-box__title">标题一</h4>
+                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                </div>
+                <div class="weui-media-box weui-media-box_text article-item">
+                    <h4 class="weui-media-box__title">标题一</h4>
+                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                </div> -->
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+
+
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-weui.js"></script>
+    <script src="js/swiper.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'horizontal', // 垂直切换选项
+            loop: true, // 循环模式选项
+            speed: 2000,
+            autoplay: true,
+
+            effect: 'flip',
+
+        })   
+    </script>
+</body>
+
+</html>

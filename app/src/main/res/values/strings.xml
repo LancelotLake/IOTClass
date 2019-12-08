@@ -4,4 +4,11 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_navigation">Navigation</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book">旧书架</string>
+    <string name="account">记账</string>
+    <string name="self">个人</string>
 </resources>

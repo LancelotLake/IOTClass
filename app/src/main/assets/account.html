@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="font/font.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="wrap" id="account">
+        <header>
+            <div class="s_mide layer" data-depth=".35"
+                style="position: relative; display: block; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden;">
+            </div>
+            <div class="logo" style="z-index: 100">外联记账</div>
+            <a class="github" href="https://github.com/LancelotLake/IOTClass" style="z-index: 100">Github</a>
+        </header>
+
+
+        <div class="tips">
+            <div class="pre" style="background: #ff9a9e"></div>
+            <p class="tip">近期账目记录</p>
+
+        </div>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>原因</th>
+                    <th>类型</th>
+                    <th>金额</th>
+                    <th>记录人</th>
+                </tr>
+                <tr v-for="item in accounts" v-key="item.id">
+                    <td>{{item.reason}}</td>
+                    <td>{{item.type}}</td>
+                    <td>{{item.money}}</td>
+                    <td>{{item.accountedBy}}</td>
+                </tr>
+                <tr class="table-footer">
+
+                    <td colspan="4">查询更多详细信息请联系管理员</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tips">
+            <div class="pre" style="background: #d4fc79"></div>
+            <p class="tip">新增账目</p>
+
+        </div>
+
+        <form class="weui-cells weui-cells_form" id="insertAccount" action="#" onsubmit="insert()">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">原因</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="请输入收/支原因" name="reason" id="reason">
+                </div>
+            </div>
+            <div class="weui-cell ">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">类型</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" id="type" readonly name="type" id="type">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">金额</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入金额" name="money"
+                        id="money">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label for="" class="weui-label">实际日期</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="date" value="" name="date" id="date">
+                </div>
+            </div>
+
+
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="备注" rows="3" name="message"></textarea>
+                    <div class="weui-textarea-counter"><span>0</span>/200</div>
+                </div>
+            </div>
+
+            <input class="weui-btn weui-btn_primary" style="width:90%;margin-top: 1rem;" type="button" onclick="insert()" value="添加账目">
+
+
+        </form>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-weui.js"></script>
+    <script src="js/swiper.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        $("#type").select({
+            title: "选择类型",
+            items: ["收入", "支出"]
+        });
+        function insert() {
+
+            if ($("#reason").val() == "" || $("#type").val() == "" || $("#money").val() == "" || $("#date").val() == "") {
+                console.log($('#insertAccount').serialize());
+                console.log($("#type").val());
+                console.log($("#money").val());
+                console.log($("#date").val());
+                $.toast("没填完整喵");
+            } else {
+                // $("#insertAccount").ajaxSubmit(function (mesg) {
+                //     $.toast("添加成功", "text");
+                //     window.location.href = "account.html";
+                // });
+                $.ajax({  
+                cache: true,  
+                type: "POST",  
+                url:"http://www.llworm.cn:8080/accounts/insert",  
+                data:$('#insertAccount').serialize(),  
+                async: false,  
+                error: function(request) {  
+                    console.log("Connection error:"+request.error);  
+                },  
+                success: function(data) {  
+                    console.log("SUCCESS!");  
+                    window.location.href = "account.html"
+                }  
+            });
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

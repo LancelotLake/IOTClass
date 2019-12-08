@@ -12,10 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.Main2Activity"
-            android:label="@string/title_activity_main2"></activity>
-        <activity
-            android:name=".MainActivity"
+            android:name=".Activities.Navigation"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

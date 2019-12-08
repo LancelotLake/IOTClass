@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scale=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="font/font.css">
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="wrap" id="login">
+        <div class="back-wrap">
+            <a href="self.html" style="color: white; font-size: 1rem;">
+                <span class="icon-back"></span>
+                返回
+            </a>
+        </div>
+        <div class="login-content">
+            <div class="login-form">
+                <div class="input-list">
+                    <h1>登录</h1>
+                    <input type="text" class="input" placeholder="学号" v-model="stuNum">
+                    <input type="password" class="input" placeholder="密码" v-model="pwd">
+                    <div class="error" v-if="error" style="color: red;font-size: 1rem; margin: 2px 5px;">密码或学号错误</div>
+                    <button class="btn btn-login" @click="login">登录</button>
+                </div>
+            </div>
+            <div class="wave-bottom">
+                <img src="imgs/wave.gif" style=" width:100%; top:0;" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-weui.js"></script>
+    <script src="js/swiper.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
