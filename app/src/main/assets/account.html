@@ -56,6 +56,12 @@
         </div>
 
         <form class="weui-cells weui-cells_form" id="insertAccount" action="#" onsubmit="insert()">
+            <div class="weui-cell" style="visibility:hidden">
+                <div class="weui-cell__hd"><label class="weui-label">学号</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="请输入学号" name="accountedBy" id="stuNum">
+                </div>
+            </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">原因</label></div>
                 <div class="weui-cell__bd">
@@ -64,7 +70,7 @@
             </div>
             <div class="weui-cell ">
                 <div class="weui-cell__hd">
-                    <label for="" class="weui-label">类型</label>
+                    <label for="type" class="weui-label">类型</label>
                 </div>
                 <div class="weui-cell__bd">
                     <input class="weui-input" type="text" id="type" readonly name="type" id="type">
@@ -78,7 +84,7 @@
                 </div>
             </div>
             <div class="weui-cell">
-                <div class="weui-cell__hd"><label for="" class="weui-label">实际日期</label></div>
+                <div class="weui-cell__hd"><label for="date" class="weui-label">实际日期</label></div>
                 <div class="weui-cell__bd">
                     <input class="weui-input" type="date" value="" name="date" id="date">
                 </div>
@@ -110,7 +116,11 @@
             items: ["收入", "支出"]
         });
         function insert() {
-
+            if(JSON.parse(window.user.getUser()).id === undefined || JSON.parse(window.user.getUser()).id === null || JSON.parse(window.user.getUser()).id === ""){
+                window.location.href = "login.html?type=3";
+                return;
+            }
+            $("#stuNum").val(JSON.parse(window.user.getUser()).stuNum)
             if ($("#reason").val() == "" || $("#type").val() == "" || $("#money").val() == "" || $("#date").val() == "") {
                 console.log($('#insertAccount').serialize());
                 console.log($("#type").val());
@@ -125,7 +135,7 @@
                 $.ajax({  
                 cache: true,  
                 type: "POST",  
-                url:"http://www.llworm.cn:8080/accounts/insert",  
+                url:"http://www.llworm.cn:8080/accounts/insert",
                 data:$('#insertAccount').serialize(),  
                 async: false,  
                 error: function(request) {  

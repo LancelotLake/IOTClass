@@ -11,6 +11,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.my.study.iotclass.Model.User;
 import com.my.study.iotclass.R;
 
 
@@ -30,6 +31,8 @@ public class BookFrag extends Fragment {
         settings.setAllowFileAccess(true);
         //设置WebView排版算法, 实现单列显示, 不允许横向移动
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        //添加user接口
+        webView.addJavascriptInterface(new User(), "user");
         //assets文件路径
         String path = "file:///android_asset/bookshelf.html";
         //加载Html页面

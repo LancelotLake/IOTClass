@@ -15,18 +15,18 @@
 
 <body>
     <div class="wrap" style="max-width: 100%">
-        <div class="center-bg">
+        <div class="center-bg" id="top">
             <div class="welcome">Hi,IOT!</div>
-            <div style="position: absolute;right:5rem;bottom:1.5rem;white-space: pre;">用户：B17070416<br> 李朋阳</div>
+            <div style="position: absolute;right:5rem;bottom:1.5rem;white-space: pre;">用户：{{stuNum}}<br> {{"   " + name}}</div>
             <img src="imgs/wave.gif" class="wave" alt="">
         </div>
         <div class="card-bottom"></div>
     </div>
 
-    <div class="login positive">
+    <div class="login positive" id="login">
         <a href="login.html" class="weui-btn weui-btn_primary" style="width:90%;margin-top: 10rem;">登录</a>
     </div>
-    <div class="list ">
+    <div class="list " id="logout">
         <div class="weui-cells">
             <a class="weui-cell weui-cell_access" href="selfInfo.html">
                 <div class="weui-cell__hd"><span class="icon-writefill" style="color: #1cbbb4"></span></div>
@@ -55,18 +55,43 @@
             </a>
         </div>
 
-        <button class="weui-btn btn_warn">退出登录</button>
+        <button class="weui-btn btn_warn" onclick="logout()">退出登录</button>
     </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/jquery-weui.js"></script>
     <script src="js/swiper.js"></script>
-
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
     <script>
         function aboutMe() {
             // $.alert("一个路过的假面骑士", "about me");
             $.toast("一个路过的假面骑士");
         }
+        function logout() {
+            window.user.clearUser();
+            window.location.href = "self.html";
+        }
+        let flag = false
+        if(JSON.parse(window.user.getUser()).id === undefined || JSON.parse(window.user.getUser()).id === null) {
+            $("#login").removeClass("positive");
+            $("#logout").addClass("positive");
+        } else {
+            flag = true
+            $("#logout").removeClass("positive");
+            $("#login").addClass("positive");
+        }
+
+        new Vue({
+            el: "#top",
+            data: {
+                name: null,
+                stuNum: null
+            },
+            mounted: function() {
+                this.name = JSON.parse(window.user.getUser()).name;
+                this.stuNum = JSON.parse(window.user.getUser()).stuNum;
+            }
+        });
     </script>
 </body>
 

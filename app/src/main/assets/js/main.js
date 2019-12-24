@@ -1,3 +1,11 @@
+//window.user.setUser("aaaa", "bbb", "123", "123" ,"123" ,"123");
+let user = JSON.parse(window.user.getUser());
+console.log(user)
+let flag = true;
+if(user.id === undefined || user.id === undefined === null) {
+    flag = false;
+}
+
 new Vue({
     el: "#home",
     data: {
@@ -69,17 +77,21 @@ new Vue({
     },
     methods: {
         borrow: function (id) {
-            let that = this;
-            let stuNum = "B17070412"
-            axios
-                .get("http://www.llworm.cn:8080/books/borrow?id=" + id + "&stuNum=" + stuNum)
-                .then(response => {
+            if(flag) {
+                let that = this;
+                let stuNum = user.stuNum;
+                axios
+                    .get("http://www.llworm.cn:8080/books/borrow?id=" + id + "&stuNum=" + stuNum)
+                    .then(response => {
                     // console.log(response);
-                    window.location.href = "bookshelf.html"
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                        window.location.href = "bookshelf.html"
+                    })
+                    .catch(error => {
+                        console.log(error);
+                     });
+            } else {
+                window.location.href = "login.html?type=2";
+            }
         }
     }
 });
@@ -112,17 +124,21 @@ new Vue({
         books: null
     },
     mounted: function () {
-        let stuNum = "B17070416";
-        let that = this;
-        axios
-            .get("http://www.llworm.cn:8080/books/self?stuNum=" + stuNum)
-            .then(response => {
-                // console.log(response);
-                that.books = response.data
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        if(flag) {
+                    let stuNum = user.stuNum;
+                    let that = this;
+                    axios
+                        .get("http://www.llworm.cn:8080/books/self?stuNum=" + stuNum)
+                        .then(response => {
+                            // console.log(response);
+                            that.books = response.data
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+        } else {
+//            window.location.href = "login.html?type=1"
+        }
     },
     methods: {
         returnBook: function (id) {
@@ -145,7 +161,8 @@ new Vue({
     data: {
         stuNum: null,
         pwd: null,
-        error: false
+        error: false,
+        success: false
     },
     methods: {
         login: function () {
@@ -155,20 +172,27 @@ new Vue({
                 .then(response => {
                     // console.log(response);
                     if (response.data != null && response.data != undefined && response.data != "") {
-                        window.location.href = "self.html"
+                        console.log(response.data)
+                        window.user.setUser(response.data.id, response.data.name, response.data.stuNum, response.data.qq, response.data.phone, response.data.sex);
+                        that.success = true;
+                        that.error = false;
+//                        window.location.href = "self.html"
                     } else {
                         that.error = true;
+                        that.success = false;
                     }
 
                 })
                 .catch(error => {
                     that.error = true;
+                    that.success = false;
                     console.log(error);
                 });
         }
     },
     mounted: function () {
         this.error = false;
+        this.success = false;
     }
 });
 
@@ -178,13 +202,26 @@ let vm = new Vue({
         qq: null,
         phone: null,
         success: false,
-        error: false
+        error: false,
+        name: null,
+        stuNum: null,
+        sex: null
+    },
+    mounted: function() {
+        if(flag) {
+            this.qq = user.qq;
+            this.phone = user.phone;
+            this.name = user.name;
+            this.stuNum = user.stuNum;
+            this.sex = user.sex
+        } else {
+//            window.location.href = "login.html?type=1";
+        }
     },
     methods: {
         updateUser: function () {
             let that = this;
-            stuNum = "B17070416"
-            that.success = true;
+            stuNum = user.stuNum
             if (/^1(3|4|5|6|7|8|9)\d{9}$/.test(that.phone) && that.qq != "") {
                 axios
                     .get("http://www.llworm.cn:8080/users/updates?stuNum=" + stuNum + "&qq=" + that.qq + "&phone=" + that.phone)
@@ -192,6 +229,7 @@ let vm = new Vue({
                         // console.log(response);
                         that.success = true;
                         that.error = false;
+                        window.user.setUser(that.qq, that.phone);
                     })
                     .catch(error => {
                         console.log(error);
